@@ -99,15 +99,17 @@ export default function App() {
     setSelectedAnime,
   };
   return (
-    <div className="w-4/5 mx-auto app-container">
-      <Header onSearch={handleSearch} setSearch={setSearch} />
-      <AnimeContextData.Provider value={AnimeContextValue}>
-        <Main>
-          <AnimeList>
-            <Anime />
-          </AnimeList>
-        </Main>
-      </AnimeContextData.Provider>
-    </div>
+    <>
+      <div className="relative w-4/5 mx-auto app-container">
+        <Header onSearch={handleSearch} setSearch={setSearch} />
+        <AnimeContextData.Provider value={AnimeContextValue}>
+          <Main>
+            <AnimeList>
+              <Anime />
+            </AnimeList>
+          </Main>
+        </AnimeContextData.Provider>
+      </div>
+    </>
   );
 }

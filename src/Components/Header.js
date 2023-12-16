@@ -4,9 +4,9 @@ export function Header({ onSearch, setSearch }) {
   return (
     <header className="mt-6">
       <nav className="grid items-center justify-between grid-cols-3 gap-4 p-6rounded-lg ">
-        <h1 className="col-span-1 text-5xl font-extrabold font-inter text-accent">
-          KawaiiKorner
-        </h1>
+        <div className="col-span-1 text-5xl font-extrabold font-inter text-accent">
+          <img src={`/Logo.png`} className="w-1/2" />
+        </div>
         <div className="flex items-center justify-end col-span-2 gap-2">
           <form className="relative flex w-2/5 " onSubmit={(e) => onSearch(e)}>
             <input

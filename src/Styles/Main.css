@@ -134,3 +134,17 @@
 .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #60d6ff; /* Warna untuk dots aktif */
 }
+
+/*
+/////////////////////////////[Media Queries] 1592px / 99.5em
+*/
+
+@media screen and (width <=99.5em) {
+  .anime-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .swiper-slide img {
+    height: 220px;
+  }
+}

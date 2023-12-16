@@ -7,8 +7,8 @@ import "../Styles/Main.css";
 export default function Main() {
   const { searchedAnime, searchValue, selectedAnime } = useAnimeData();
   return (
-    <div className="main-container">
-      <div className="top-and-upcoming-anime-container">
+    <div className="pb-5 main-container">
+      <div className="sticky top-and-upcoming-anime-container top-4">
         <div className="top-animes">
           <h1 className="p-4 top-anime-container-title text-accent">
             Top Anime
