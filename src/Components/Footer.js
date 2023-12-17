@@ -10,7 +10,9 @@ export default function Footer() {
             by <b>JustHasan</b> on {""}
             Github
           </h2>
-          <p className="items-center mb-4 text-2xl">Contact me on</p>
+          <p className="items-center mb-4 text-2xl text-center">
+            Contact me on
+          </p>
           <div className="flex justify-center text-4xl gap-x-4">
             <a
               href="https://www.linkedin.com/in/hasan-basri-60a638240/"
@@ -60,7 +62,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <p className="p-4 text-lg text-center bg-slate-950">
+      <p className="p-8 text-lg text-center bg-slate-950">
         All rights reserved &copy; Copyright {new Date().getFullYear()}. Created
         by Hasan Basri with ReactJS Framework & TailwindCSS
       </p>

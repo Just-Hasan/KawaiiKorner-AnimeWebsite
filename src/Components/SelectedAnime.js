@@ -31,7 +31,7 @@ export function SelectedAnime() {
           <div className="selected-anime-information  relative grid grid-cols-[auto,auto,1fr] gap-x-4 gap-y-6 rounded-2xl bg-tailwindColorGray p-4 text-3xl">
             <p className="font-black">Title</p>
             <p className="font-black">:</p>
-            <p className="font-black text-left ">{selectedAnime.title}</p>
+            <p className="font-black text-left">{selectedAnime.title}</p>
             {/*  */}
             <p className="">Episodes</p>
             <p className="">:</p>
@@ -174,13 +174,13 @@ function Character({ char }) {
   return (
     <div className="relative w-full h-full overflow-hidden rounded-2xl">
       <a href={char.character.url} target="_blank" rel="noreferrer">
-        <div className="h-[300px]">
+        <span className="h-[300px]">
           <img
             src={char?.character.images.webp.image_url}
             className={`h-full w-full object-cover`}
             alt={char?.character.name}
           />
-        </div>
+        </span>
       </a>
       <p className="absolute bottom-0 left-0 w-full p-4 text-xl font-bold bg-tailwindColorGray bg-opacity-60 text-bright">
         {characterName}

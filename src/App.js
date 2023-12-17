@@ -28,6 +28,7 @@ export default function App() {
   const [selectedAnime, setSelectedAnime] = useState(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [passThirtyPercent, setPassThirtyPercent] = useState(false);
   /////////////////////////////////////[Handler Functions: Search]
   function handleSearch(e) {
     e.preventDefault();
@@ -36,6 +37,27 @@ export default function App() {
     setSelectedAnime(null);
     setSearch("");
   }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = window.scrollY;
+
+      const scrolledPercentage = (scrolled / scrollableHeight) * 100;
+
+      if (scrolledPercentage >= 30) {
+        setPassThirtyPercent(true);
+      } else {
+        setPassThirtyPercent(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [passThirtyPercent]);
 
   /////////////////////////////////////[Shortest anime title]
   function shortTitle(anime, minIndex = 0) {
@@ -100,6 +122,14 @@ export default function App() {
   return (
     <>
       <div className="relative w-4/5 mx-auto app-container">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className={`fixed go-up ${
+            passThirtyPercent ? "active" : "not-active"
+          } bottom-[10%] bg-accent text-slate-900 font-black rounded-xl p-4 z-10 text-xl right-[2.5%]`}
+        >
+          Go up!
+        </button>
         <Header onSearch={handleSearch} setSearch={setSearch} />
         <AnimeContextData.Provider value={AnimeContextValue}>
           <Main>

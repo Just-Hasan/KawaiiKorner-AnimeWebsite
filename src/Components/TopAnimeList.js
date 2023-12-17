@@ -7,10 +7,13 @@ export function TopAnimeList() {
   const [dataFetched, setDataFetched] = useState(false);
   const { shortTitle, selectAnime } = useAnimeData();
   const getTopAnimeData = async function () {
-    const getAPIData = await fetch("https://api.jikan.moe/v4/top/anime");
-    const { data } = await getAPIData.json();
-    setTopAnime(data);
-    setDataFetched(true);
+    try {
+      const getAPIData = await fetch("https://api.jikan.moe/v4/top/anime");
+      if (!getAPIData.ok) throw new Error("Failed Fetching Top Anime");
+      const { data } = await getAPIData.json();
+      setTopAnime(data);
+      setDataFetched(true);
+    } catch (err) {}
   };
   useEffect(() => {
     getTopAnimeData();
