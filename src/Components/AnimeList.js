@@ -7,7 +7,7 @@ export function AnimeList() {
   const { searchedAnime, errorMessage, isLoading } = useAnimeData();
 
   return (
-    <ul className="grid grid-cols-4 px-4 pt-4 mt-12 text-center list-none anime-list gap-x-8 gap-y-16">
+    <ul className="grid grid-cols-4 px-4 pt-4 mt-12 text-center list-none anime-list gap-x-4 gap-y-6">
       {Object.keys(searchedAnime).length > 0 &&
         searchedAnime.map((anime) => {
           return <Anime key={anime.mal_id} anime={anime} />;
