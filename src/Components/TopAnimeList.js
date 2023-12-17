@@ -17,7 +17,7 @@ export function TopAnimeList() {
   }, []);
 
   return (
-    <div className="pt-4 mt-12">
+    <div className="pt-4 mt-12 swiper-wrapper">
       {dataFetched && (
         <Swiper
           effect={"coverflow"}
@@ -53,10 +53,10 @@ export function TopAnimeList() {
                     src={anime.images.jpg.large_image_url}
                     alt={anime.title}
                   />
-                  <p className="absolute top-0 left-0 p-4 text-3xl font-extrabold bg-opacity-50 w-max rounded-br-xl bg-tailwindColorDark text-accent">
+                  <p className="absolute top-0 left-0 p-4 text-3xl font-extrabold bg-opacity-50 top-anime-list-title w-max rounded-br-xl rounded-tl-xl bg-tailwindColorDark text-accent">
                     {shortTitle(anime)}
                   </p>
-                  <p className="absolute bottom-0 right-0 p-4 text-2xl font-black rounded-br-2xl rounded-tl-xl bg-accent text-shades">
+                  <p className="absolute bottom-0 right-0 p-4 text-2xl font-black rounded-br-2xl top-anime-list-desc rounded-tl-xl bg-accent text-shades">
                     {anime.score}
                   </p>
                 </div>

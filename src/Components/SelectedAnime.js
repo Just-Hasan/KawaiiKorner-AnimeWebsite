@@ -17,7 +17,6 @@ export function SelectedAnime() {
     getAnimeCharacter();
   }, [selectedAnime]);
 
-  console.log();
   return (
     <>
       <div className="selected-anime-container scrollbar-thin scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-200 mt-12   px-4 pt-4 text-[#f4f4f4]">
@@ -29,7 +28,7 @@ export function SelectedAnime() {
               alt={selectedAnime.title}
             />
           </div>
-          <div className="selected-anime-information relative grid grid-cols-[auto,auto,1fr] gap-x-4 gap-y-6 rounded-2xl bg-tailwindColorGray p-4 text-3xl">
+          <div className="selected-anime-information  relative grid grid-cols-[auto,auto,1fr] gap-x-4 gap-y-6 rounded-2xl bg-tailwindColorGray p-4 text-3xl">
             <p className="font-black">Title</p>
             <p className="font-black">:</p>
             <p className="font-black text-left ">{selectedAnime.title}</p>
@@ -95,6 +94,21 @@ export function SelectedAnime() {
             <p className="">Year</p>
             <p className="">:</p>
             <p className="">{selectedAnime.year || "To be announced"}</p>
+            {/*  */}
+
+            <p className="">Studio</p>
+            <p className="">:</p>
+            <p className="">
+              {selectedAnime.studios.map((studio, i, arr) => {
+                return (
+                  <span key={studio.mal_id}>
+                    {studio.name}
+                    {i < arr.length - 1 ? ", " : ""}
+                  </span>
+                );
+              })}
+            </p>
+            {/*  */}
             <button
               className="absolute top-0 right-0 p-4 text-5xl font-black text-accent"
               onClick={() => setSelectedAnime(null)}
@@ -112,7 +126,7 @@ export function SelectedAnime() {
               <iframe
                 width={"50%"}
                 height={"360px"}
-                className="ml-auto mr-auto rounded-2xl"
+                className="ml-auto mr-auto rounded-2xl anime-trailer"
                 src={selectedAnime.trailer.embed_url}
                 allowFullScreen
                 title="Anime Trailer"
@@ -126,9 +140,9 @@ export function SelectedAnime() {
           </div>
           <div className="col-span-2 mt-14">
             <h2 className="mb-6 text-3xl font-black text-center">Characters</h2>
-            <div className="grid w-full grid-cols-5 gap-4 text-center">
+            <div className="grid w-full grid-cols-5 gap-4 text-center anime-char-container">
               {animeCharacter.length !== 0 ? (
-                animeCharacter.slice(0, 10).map((character) => {
+                animeCharacter.slice(0, 6).map((character) => {
                   return (
                     <Character
                       char={character}
@@ -157,7 +171,6 @@ function Character({ char }) {
       ? reverseName(char.character.name)
       : char.character.name;
   }
-  console.log(char);
   return (
     <div className="relative w-full h-full overflow-hidden rounded-2xl">
       <a href={char.character.url} target="_blank" rel="noreferrer">

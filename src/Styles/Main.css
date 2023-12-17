@@ -1,3 +1,60 @@
+/*--- 01 Typography System:
+
+html : {
+font-size : 62.5%;
+}
+
+FONT SIZE : 
+- Normal Text : / 10 / 12 / 14 / 16 / 18 /
+- Sub-Titles :  / 20 / 24 / 30 / 36 /
+- Titles : / 44 / 52 / 62 / 74 / 86 / 98 /
+
+ Font weights
+- Default : 400
+- Medium : 500
+- Semi-bold : 600
+- Bold : 700
+
+  Line heights : 
+- Default : 1 
+- Small : 1.05
+- Medium : 1.2
+- Large : 1.8
+
+- Paragraph default : 1.6   
+- For small text, use line height of 1.5≥
+- For titles or sub-titles, use line height of 1.5≤
+
+Letter Spacing :
+- 0.5px
+- 0.75px
+
+
+--- 02 Colors
+
+- Brand color (Primary): 
+- Tint : 
+- Shades :
+- Accent : 
+- Greys : 
+
+
+--- 05 SHADOWS
+
+
+--- 06 BORDER-RADIUS
+
+Default : 9px
+
+
+--- 07 WHITESPACE
+
+- SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+
+FONT-NAME? */
+
 :root {
   --accent-color: #60d6ff;
   --shade-color: #101820;
@@ -146,5 +203,217 @@
 
   .swiper-slide img {
     height: 220px;
+  }
+
+  .footer h2 {
+    font-size: 1.8rem;
+  }
+  .footer p {
+    font-size: 1.2rem;
+  }
+
+  .anime-trailer {
+    width: 70%;
+  }
+
+  .anime-char-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/*
+/////////////////////////////[Media Queries] 1196px / 74.75em
+*/
+
+@media screen and (width <=74.75em) {
+  .main-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .top-anime-list-title,
+  .upcoming-anime-list-title,
+  .top-anime-list-desc,
+  .upcoming-anime-list-desc {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+  }
+
+  .swiper-slide img {
+    height: 180px;
+  }
+
+  .anime-list {
+    gap: 1.2rem;
+  }
+
+  .anime img {
+    height: 250px;
+  }
+
+  .anime span {
+    font-size: 1.2rem;
+  }
+
+  .selected-anime-image,
+  .selected-anime-information {
+    height: 100%;
+    grid-column: span 2;
+  }
+
+  .selected-anime-img {
+    margin-bottom: 1.2rem;
+    margin-inline: auto;
+    height: 500px;
+    width: 80%;
+  }
+
+  .selected-anime-information {
+    margin-top: 2.4rem;
+    font-size: 1.2rem;
+  }
+
+  .anime-trailer {
+    width: 100%;
+  }
+
+  .anime-char-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*
+/////////////////////////////[Media Queries] 900px / 56.25em
+*/
+
+@media screen and (width <=56.25em) {
+  .input-form {
+    width: 80%;
+  }
+
+  input::placeholder {
+    font-size: 1.2rem;
+  }
+
+  .logo {
+    width: 100%;
+  }
+
+  .main-container {
+    column-gap: 0rem;
+  }
+
+  .anime-list {
+    gap: 0.8rem;
+  }
+
+  .swiper-slide img {
+    height: 300px;
+  }
+  .anime img {
+    height: 200px;
+  }
+  .anime span {
+    font-size: 1rem;
+  }
+  .swiper-pagination .swiper-pagination-bullet {
+    width: 5px; /* Atur lebar dots */
+    border: 5px solid #60d6ff;
+    height: 5px; /* Atur tinggi dots */
+    margin: 0 5px; /* Atur jarak antara dots */
+    border-radius: 50%; /* Membuat dots menjadi bulat */
+    background-color: #555; /* Warna default dots */
+  }
+}
+
+/*
+/////////////////////////////[Media Queries] 778px / 48.625em
+*/
+
+@media screen and (width <=48.625em) {
+  .main-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .main-container .top-and-upcoming-anime-container {
+    position: relative;
+  }
+
+  .anime-list {
+    gap: 1.2rem;
+  }
+
+  .anime img {
+    height: 270px;
+  }
+
+  .anime span {
+    font-size: 1.3rem;
+  }
+
+  .footer-wrapper {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2.5rem;
+  }
+
+  .footer-portofolio {
+    grid-column: span 2;
+  }
+}
+
+/*
+/////////////////////////////[Media Queries] 600px / 37.5em
+*/
+
+@media screen and (width <=37.5em) {
+  .app-container {
+    width: 100%;
+  }
+
+  .anime-container-title-wrapper {
+    padding-inline: 1.2rem;
+  }
+
+  .anime img {
+    height: 230px;
+  }
+
+  .top-and-upcoming-anime-container {
+    margin-inline: auto;
+    width: 95%;
+  }
+
+  .footer-wrapper {
+    grid-template-columns: 1fr;
+    row-gap: 3.2rem;
+  }
+
+  .footer-portofolio {
+    grid-column: span 1;
+  }
+}
+
+/*
+/////////////////////////////[Media Queries] 425px / 26.5625em
+*/
+
+@media screen and (width <=26.5625em) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-form {
+    width: 100%;
+  }
+
+  .anime-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .swiper-slide img {
+    height: 220px;
+  }
+
+  .anime-char-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

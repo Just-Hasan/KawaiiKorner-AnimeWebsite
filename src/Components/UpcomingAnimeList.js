@@ -23,7 +23,7 @@ export function UpcomingAnimeList() {
     getAPIData();
   }, []);
   return (
-    <div className="mt-12">
+    <div className="mt-12 swiper-wrapper">
       {dataFetched && (
         <Swiper
           effect={"coverflow"}
@@ -59,10 +59,10 @@ export function UpcomingAnimeList() {
                     src={anime.images.jpg.large_image_url}
                     alt={anime.title}
                   />
-                  <p className="absolute top-0 left-0 max-w-md p-4 text-3xl font-extrabold bg-opacity-50 rounded-br-xl bg-tailwindColorDark text-bright">
+                  <p className="absolute top-0 left-0 max-w-md p-4 text-3xl font-extrabold bg-opacity-50 rounded-tl-xl upcoming-anime-list-title rounded-br-xl bg-tailwindColorDark text-bright">
                     {shortTitle(anime, 1)}
                   </p>
-                  <div className="absolute bottom-0 right-0 p-4 text-2xl font-black bg-opacity-50 rounded-tl-xl bg-tailwindColorDark text-bright">
+                  <div className="absolute bottom-0 right-0 p-4 text-2xl font-black bg-opacity-50 upcoming-anime-list-desc rounded-tl-xl bg-tailwindColorDark text-bright">
                     {anime.year ?? "SOON"}
                   </div>
                 </div>

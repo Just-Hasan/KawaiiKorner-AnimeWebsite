@@ -2,10 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 
 /////////////////////////////////////[Component]
 import { Header } from "./Components/Header";
-
 import { Anime } from "./Components/Anime.js";
-
 import Main from "./Components/Main";
+import Footer from "./Components/Footer.js";
 /////////////////////////////////////[CSS]
 import "./App.css";
 
@@ -110,6 +109,7 @@ export default function App() {
           </Main>
         </AnimeContextData.Provider>
       </div>
+      <Footer />
     </>
   );
 }

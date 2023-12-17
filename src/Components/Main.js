@@ -23,18 +23,22 @@ export default function Main() {
         </div>
       </div>
       <div className="anime-container">
-        <div className="anime-container-title">
-          {searchedAnime &&
-            searchedAnime.length !== 0 &&
-            searchValue === "" && <p>Airing Anime</p>}
-          {searchedAnime &&
-            searchedAnime.length === 0 &&
-            searchValue !== "" && (
-              <p>{`Sorry, we cannot find any results for ${searchValue}`}</p>
-            )}
-          {searchedAnime && searchedAnime.length > 0 && searchValue !== "" && (
-            <p>{`Found ${searchedAnime?.length} result for ${searchValue}`}</p>
-          )}
+        <div className="anime-container-title-wrapper">
+          <div className="anime-container-title">
+            {searchedAnime &&
+              searchedAnime.length !== 0 &&
+              searchValue === "" && <h1>Airing Anime</h1>}
+            {searchedAnime &&
+              searchedAnime.length === 0 &&
+              searchValue !== "" && (
+                <h1>{`Sorry, we cannot find any results for ${searchValue}`}</h1>
+              )}
+            {searchedAnime &&
+              searchedAnime.length > 0 &&
+              searchValue !== "" && (
+                <h1>{`Found ${searchedAnime?.length} result for ${searchValue}`}</h1>
+              )}
+          </div>
         </div>
         {selectedAnime ? <SelectedAnime /> : <AnimeList />}
       </div>
