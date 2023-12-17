@@ -103,6 +103,7 @@ export default function App() {
   /////////////////////////////////////[Selecting anime]
   function selectAnime(anime) {
     setSelectedAnime(anime);
+    window.scrollTo({ top: 0, behavior: "instant" });
   }
 
   useEffect(() => {

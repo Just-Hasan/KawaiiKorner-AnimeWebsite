@@ -132,7 +132,7 @@ export function SelectedAnime() {
                 title="Anime Trailer"
               ></iframe>
             ) : (
-              <div className="ml-auto mr-auto grid h-[360px] w-1/2 place-content-center rounded-2xl bg-tailwindColorGray">
+              <div className="ml-auto mr-auto grid h-[360px] w-1/2 anime-no-trailer place-content-center rounded-2xl bg-tailwindColorGray">
                 <TbFileSad className="w-full text-center text-[80px]" />
                 <h3 className="text-3xl font-black">Trailer not available</h3>
               </div>
