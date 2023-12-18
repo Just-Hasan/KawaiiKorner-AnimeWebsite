@@ -140,7 +140,7 @@ export default function App() {
           </Main>
         </AnimeContextData.Provider>
       </div>
-      <Footer />
+      {!isLoading && <Footer />}
     </>
   );
 }
