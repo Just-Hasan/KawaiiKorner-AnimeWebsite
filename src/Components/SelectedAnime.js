@@ -6,17 +6,25 @@ import { TbFileSad } from "react-icons/tb";
 export function SelectedAnime() {
   const { selectedAnime, setSelectedAnime } = useAnimeData();
   const [animeCharacter, setAnimeCharacter] = useState([]);
-  const getAnimeCharacter = async function () {
-    const gettingAPIData = await fetch(
+  const [animeStreamingLink, setAnimeStreamingLink] = useState([]);
+
+  const getAnimeDatas = async function () {
+    const getAnimeCharacterAPI = await fetch(
       `https://api.jikan.moe/v4/anime/${selectedAnime.mal_id}/characters`
     );
-    const { data } = await gettingAPIData.json();
-    setAnimeCharacter(data);
+    const getAnimeStreamingAPI = await fetch(
+      `https://api.jikan.moe/v4/anime/${selectedAnime.mal_id}/streaming`
+    );
+    const { data: AnimeCharacter } = await getAnimeCharacterAPI.json();
+    const { data: AnimeStreamingData } = await getAnimeStreamingAPI.json();
+    setAnimeCharacter(AnimeCharacter);
+    setAnimeStreamingLink(AnimeStreamingData);
   };
-  useEffect(() => {
-    getAnimeCharacter();
-  }, [selectedAnime]);
 
+  useEffect(() => {
+    getAnimeDatas();
+  }, [selectedAnime]);
+  console.log(animeStreamingLink);
   return (
     <>
       <div className="selected-anime-container scrollbar-thin scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-200 mt-12   px-4 pt-4 text-[#f4f4f4]">
@@ -116,11 +124,11 @@ export function SelectedAnime() {
               <IoMdCloseCircleOutline />
             </button>
           </div>
-          <div className="col-span-2 mt-14 ">
+          <div className="col-span-2 mt-14">
             <h2 className="mb-6 text-3xl font-black text-center">Synopsis</h2>
             <p className="leading-{15px} text-2xl">{selectedAnime.synopsis}</p>
           </div>
-          <div className="col-span-2 mt-14 ">
+          <div className="col-span-2 mt-14">
             <h2 className="mb-6 text-3xl font-black text-center">Trailer</h2>
             {selectedAnime.trailer.embed_url ? (
               <iframe
@@ -137,6 +145,33 @@ export function SelectedAnime() {
                 <h3 className="text-3xl font-black">Trailer not available</h3>
               </div>
             )}
+          </div>
+          <div className="col-span-2 mt-14">
+            <h2 className="mb-6 text-3xl font-black text-center">Streaming</h2>
+            <div
+              className="grid justify-center w-full grid-cols-3 overflow-hidden bg-tailwindColorGray rounded-xl"
+              style={{ outline: "1px solid #60d6ff" }}
+            >
+              {animeStreamingLink.length > 0 ? (
+                animeStreamingLink.map((streamingLink, i) => {
+                  return (
+                    <a
+                      style={{ outline: "1px solid #60d6ff", width: "100%" }}
+                      href={streamingLink.url}
+                      key={streamingLink.name}
+                      target="_blank"
+                      className="p-4 text-2xl text-center justify-self-center hover:text-[#60d6ff] font-bold"
+                    >
+                      {streamingLink.name}
+                    </a>
+                  );
+                })
+              ) : (
+                <p className="col-span-3 p-4 text-2xl font-black text-center">
+                  No Link Yet
+                </p>
+              )}
+            </div>
           </div>
           <div className="col-span-2 mt-14">
             <h2 className="mb-6 text-3xl font-black text-center">Characters</h2>
