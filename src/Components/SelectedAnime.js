@@ -160,6 +160,7 @@ export function SelectedAnime() {
                       href={streamingLink.url}
                       key={streamingLink.name}
                       target="_blank"
+                      rel="noreferrer"
                       className="p-4 text-2xl text-center justify-self-center hover:text-[#60d6ff] font-bold"
                     >
                       {streamingLink.name}
