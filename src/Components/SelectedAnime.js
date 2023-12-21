@@ -28,7 +28,7 @@ export function SelectedAnime() {
   return (
     <>
       <div className="selected-anime-container scrollbar-thin scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-200 mt-12   px-4 pt-4 text-[#f4f4f4]">
-        <div className="selected-anime grid grid-cols-[35fr,65fr] gap-x-4">
+        <div className="selected-anime grid grid-cols-[35fr,65fr] gap-y-16 gap-x-4">
           <div className="relative selected-anime-image">
             <img
               src={selectedAnime.images.jpg.large_image_url}
@@ -36,7 +36,7 @@ export function SelectedAnime() {
               alt={selectedAnime.title}
             />
           </div>
-          <div className="selected-anime-information  relative grid grid-cols-[auto,auto,1fr] gap-x-4 gap-y-6 rounded-2xl bg-tailwindColorGray p-4 text-3xl">
+          <div className="selected-anime-information relative grid grid-cols-[auto,auto,1fr] gap-x-4 gap-y-6 rounded-2xl bg-tailwindColorGray p-4 text-3xl">
             <p className="font-black">Title</p>
             <p className="font-black">:</p>
             <p className="font-black text-left">{selectedAnime.title}</p>
@@ -123,6 +123,9 @@ export function SelectedAnime() {
             >
               <IoMdCloseCircleOutline />
             </button>
+            <button className="absolute bottom-[2.5%] rounded-xl text-[#0e1729] font-black right-[2.5%] p-4 bg-accent">
+              Watch
+            </button>
           </div>
           <div className="col-span-2 mt-14">
             <h2 className="mb-6 text-3xl font-black text-center">Synopsis</h2>
@@ -146,7 +149,7 @@ export function SelectedAnime() {
               </div>
             )}
           </div>
-          <div className="col-span-2 mt-14">
+          <div className="col-span-2 mt-14 streaming">
             <h2 className="mb-6 text-3xl font-black text-center">Streaming</h2>
             <div
               className="grid justify-center w-full grid-cols-3 overflow-hidden bg-tailwindColorGray rounded-xl"
