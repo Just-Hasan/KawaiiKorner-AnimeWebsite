@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 
 /////////////////////////////////////[Component]
 import { Header } from "./Components/Header";
@@ -29,6 +29,7 @@ export default function App() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [passThirtyPercent, setPassThirtyPercent] = useState(false);
+  const AppHeader = useRef(null);
   /////////////////////////////////////[Handler Functions: Search]
   function handleSearch(e) {
     e.preventDefault();
@@ -43,9 +44,7 @@ export default function App() {
       const scrollableHeight =
         document.documentElement.scrollHeight - window.innerHeight;
       const scrolled = window.scrollY;
-
       const scrolledPercentage = (scrolled / scrollableHeight) * 100;
-
       if (scrolledPercentage >= 30) {
         setPassThirtyPercent(true);
       } else {
@@ -122,15 +121,7 @@ export default function App() {
   };
   return (
     <>
-      <div className="relative w-4/5 mx-auto app-container">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`fixed go-up ${
-            passThirtyPercent ? "active" : "not-active"
-          } bottom-[10%] bg-accent text-slate-900 font-black rounded-xl p-4 z-10 text-xl right-[2.5%]`}
-        >
-          Go up!
-        </button>
+      <div className="relative w-4/5 mx-auto app-container" ref={AppHeader}>
         <Header onSearch={handleSearch} setSearch={setSearch} />
         <AnimeContextData.Provider value={AnimeContextValue}>
           <Main>
@@ -139,6 +130,16 @@ export default function App() {
             </AnimeList>
           </Main>
         </AnimeContextData.Provider>
+        <button
+          onClick={() =>
+            AppHeader.current.scrollIntoView({ behavior: "smooth" })
+          }
+          className={`fixed go-up ${
+            passThirtyPercent ? "active" : "not-active"
+          } bottom-[10%] bg-accent text-slate-900 font-black rounded-xl p-4 z-10 text-xl right-[2.5%]`}
+        >
+          Go up!
+        </button>
       </div>
       {!isLoading && <Footer />}
     </>

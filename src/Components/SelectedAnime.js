@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useAnimeData } from "../App";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaQuestion } from "react-icons/fa";
@@ -7,7 +7,8 @@ export function SelectedAnime() {
   const { selectedAnime, setSelectedAnime } = useAnimeData();
   const [animeCharacter, setAnimeCharacter] = useState([]);
   const [animeStreamingLink, setAnimeStreamingLink] = useState([]);
-
+  const streamingLink = useRef(null);
+  console.log(streamingLink);
   const getAnimeDatas = async function () {
     const getAnimeCharacterAPI = await fetch(
       `https://api.jikan.moe/v4/anime/${selectedAnime.mal_id}/characters`
@@ -21,10 +22,13 @@ export function SelectedAnime() {
     setAnimeStreamingLink(AnimeStreamingData);
   };
 
+  function scrollToStreamLink() {
+    streamingLink.current.scrollIntoView({ behavior: "smooth" });
+  }
+
   useEffect(() => {
     getAnimeDatas();
   }, [selectedAnime]);
-  console.log(animeStreamingLink);
   return (
     <>
       <div className="selected-anime-container scrollbar-thin scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-200 mt-12   px-4 pt-4 text-[#f4f4f4]">
@@ -123,7 +127,10 @@ export function SelectedAnime() {
             >
               <IoMdCloseCircleOutline />
             </button>
-            <button className="absolute bottom-[2.5%] rounded-xl text-[#0e1729] font-black right-[2.5%] p-4 bg-accent">
+            <button
+              onClick={() => scrollToStreamLink()}
+              className="absolute bottom-[2.5%] rounded-xl text-[#0e1729] font-black right-[2.5%] p-4 bg-accent"
+            >
               Watch
             </button>
           </div>
@@ -149,7 +156,7 @@ export function SelectedAnime() {
               </div>
             )}
           </div>
-          <div className="col-span-2 mt-14 streaming">
+          <div className="col-span-2 mt-14 streaming" ref={streamingLink}>
             <h2 className="mb-6 text-3xl font-black text-center">Streaming</h2>
             <div
               className="grid justify-center w-full grid-cols-3 overflow-hidden bg-tailwindColorGray rounded-xl"
