@@ -8,7 +8,6 @@ export function SelectedAnime() {
   const [animeCharacter, setAnimeCharacter] = useState([]);
   const [animeStreamingLink, setAnimeStreamingLink] = useState([]);
   const streamingLink = useRef(null);
-  console.log(streamingLink);
   const getAnimeDatas = async function () {
     const getAnimeCharacterAPI = await fetch(
       `https://api.jikan.moe/v4/anime/${selectedAnime.mal_id}/characters`
@@ -39,6 +38,12 @@ export function SelectedAnime() {
               className="object-cover w-full h-full selected-anime-img rounded-2xl"
               alt={selectedAnime.title}
             />
+            <button
+              className="absolute top-[1%] right-[1%] rounded-xl p-4 bg-accent text-2xl font-black text-[#101820]"
+              onClick={() => setSelectedAnime(null)}
+            >
+              Back
+            </button>
           </div>
           <div className="selected-anime-information relative grid grid-cols-[auto,auto,1fr] gap-x-4 gap-y-6 rounded-2xl bg-tailwindColorGray p-4 text-3xl">
             <p className="font-black">Title</p>
@@ -121,12 +126,7 @@ export function SelectedAnime() {
               })}
             </p>
             {/*  */}
-            <button
-              className="absolute top-0 right-0 p-4 text-5xl font-black text-accent"
-              onClick={() => setSelectedAnime(null)}
-            >
-              <IoMdCloseCircleOutline />
-            </button>
+
             <button
               onClick={() => scrollToStreamLink()}
               className="absolute bottom-[2.5%] rounded-xl text-[#0e1729] font-black right-[2.5%] p-4 bg-accent"
