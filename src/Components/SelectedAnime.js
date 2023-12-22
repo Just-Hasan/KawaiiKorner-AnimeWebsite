@@ -39,7 +39,7 @@ export function SelectedAnime() {
               alt={selectedAnime.title}
             />
             <button
-              className="absolute top-[1%] right-[1%] rounded-xl p-4 bg-accent text-2xl font-black text-[#101820]"
+              className="absolute shadow-2xl top-[1%] left-[1%] rounded-xl p-4 shad bg-accent text-2xl font-black text-[#101820]"
               onClick={() => setSelectedAnime(null)}
             >
               Back
