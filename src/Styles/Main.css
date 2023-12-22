@@ -403,6 +403,11 @@ FONT-NAME? */
     height: 230px;
   }
 
+  .anime-container-title h1 {
+    font-size: 1.6rem;
+    line-height: 1.5;
+  }
+
   .top-and-upcoming-anime-container {
     margin-inline: auto;
     width: 95%;
