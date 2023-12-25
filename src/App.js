@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-
+import { BrowserRouter } from "react-router-dom";
 /////////////////////////////////////[Component]
 import { Header } from "./Components/Header";
 import { Anime } from "./Components/Anime.js";
