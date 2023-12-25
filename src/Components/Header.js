@@ -1,11 +1,29 @@
 import { FaMagnifyingGlass } from "react-icons/fa6";
-
+import { Link } from "react-router-dom";
 export function Header({ onSearch, setSearch }) {
   return (
     <header className="p-4 mt-4">
       <nav className="grid items-center justify-between grid-cols-3 gap-4 p-6 rounded-lg navbar">
-        <div className="col-span-1 text-5xl font-extrabold font-inter text-accent">
-          <img src={`/Logo.png`} className="w-1/2 logo" />
+        <div className="flex items-center justify-between col-span-1 text-5xl gap-x-4 font-extraboldfont-inter text-accent">
+          <img
+            src={`/Logo.png`}
+            className="w-1/2 bg-slate-400 logo"
+            alt="Kawaii Korner Logo"
+          />
+          <ul className="flex items-center justify-center w-full h-full text-xl gap-x-4">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/Manga">Manga</Link>
+            </li>
+            <li>
+              <Link to="/Seiyuu">Seiyuu</Link>
+            </li>
+            <li>
+              <Link to="/About">About</Link>
+            </li>
+          </ul>
         </div>
         <div className="flex justify-end col-span-2 gap-2 input-form-wrapper">
           <form

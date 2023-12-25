@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { useAnimeData } from "../App";
-import { IoMdCloseCircleOutline } from "react-icons/io";
 import { FaQuestion } from "react-icons/fa";
 import { TbFileSad } from "react-icons/tb";
 export function SelectedAnime() {
@@ -8,24 +7,25 @@ export function SelectedAnime() {
   const [animeCharacter, setAnimeCharacter] = useState([]);
   const [animeStreamingLink, setAnimeStreamingLink] = useState([]);
   const streamingLink = useRef(null);
-  const getAnimeDatas = async function () {
-    const getAnimeCharacterAPI = await fetch(
-      `https://api.jikan.moe/v4/anime/${selectedAnime.mal_id}/characters`
-    );
-    const getAnimeStreamingAPI = await fetch(
-      `https://api.jikan.moe/v4/anime/${selectedAnime.mal_id}/streaming`
-    );
-    const { data: AnimeCharacter } = await getAnimeCharacterAPI.json();
-    const { data: AnimeStreamingData } = await getAnimeStreamingAPI.json();
-    setAnimeCharacter(AnimeCharacter);
-    setAnimeStreamingLink(AnimeStreamingData);
-  };
 
   function scrollToStreamLink() {
     streamingLink.current.scrollIntoView({ behavior: "smooth" });
   }
 
   useEffect(() => {
+    const getAnimeDatas = async function () {
+      const getAnimeCharacterAPI = await fetch(
+        `https://api.jikan.moe/v4/anime/${selectedAnime.mal_id}/characters`
+      );
+      const getAnimeStreamingAPI = await fetch(
+        `https://api.jikan.moe/v4/anime/${selectedAnime.mal_id}/streaming`
+      );
+      const { data: AnimeCharacter } = await getAnimeCharacterAPI.json();
+      const { data: AnimeStreamingData } = await getAnimeStreamingAPI.json();
+      setAnimeCharacter(AnimeCharacter);
+      setAnimeStreamingLink(AnimeStreamingData);
+    };
+
     getAnimeDatas();
   }, [selectedAnime]);
   return (
@@ -162,7 +162,7 @@ export function SelectedAnime() {
               className="grid justify-center w-full grid-cols-3 overflow-hidden bg-tailwindColorGray rounded-xl"
               style={{ outline: "1px solid #60d6ff" }}
             >
-              {animeStreamingLink.length > 0 ? (
+              {animeStreamingLink?.length > 0 ? (
                 animeStreamingLink.map((streamingLink, i) => {
                   return (
                     <a

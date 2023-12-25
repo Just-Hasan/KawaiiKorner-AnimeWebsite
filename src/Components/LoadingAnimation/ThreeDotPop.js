@@ -1,6 +1,6 @@
-import "../Styles/LoadingAnimation.css";
+import "../../Styles/ThreeDotPop.css";
 
-export default function LoadingAnimation({ children }) {
+export default function ThreeDotPop({ children }) {
   return (
     <div className="loading-message">
       {children}

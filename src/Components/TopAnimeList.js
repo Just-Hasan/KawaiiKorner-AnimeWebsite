@@ -1,33 +1,41 @@
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+import SpinningRing from "./LoadingAnimation/SpinningRing";
 import { useAnimeData } from "../App";
 export function TopAnimeList() {
   const [topAnime, setTopAnime] = useState([]);
-  const [dataFetched, setDataFetched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { shortTitle, selectAnime } = useAnimeData();
-  const getTopAnimeData = async function () {
-    try {
-      const getAPIData = await fetch("https://api.jikan.moe/v4/top/anime");
-      if (!getAPIData.ok) throw new Error("Failed Fetching Top Anime");
-      const { data } = await getAPIData.json();
-      setTopAnime(data);
-      setDataFetched(true);
-    } catch (err) {}
-  };
+
   useEffect(() => {
+    const getTopAnimeData = async function () {
+      try {
+        setIsLoading(true);
+        const getAPIData = await fetch("https://api.jikan.moe/v4/top/anime");
+        if (!getAPIData.ok) throw new Error("Failed Fetching Top Anime");
+        const { data } = await getAPIData.json();
+        setTopAnime(data);
+      } catch (err) {
+        console.log(err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
     getTopAnimeData();
   }, []);
 
   return (
-    <div className="pt-4 mt-12 swiper-wrapper">
-      {dataFetched && (
+    <div className="h-full pt-4 mt-12 swiper-wrapper">
+      {isLoading ? (
+        <SpinningRing />
+      ) : (
         <Swiper
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={"auto"}
-          loop={true}
+          loop={topAnime.length > 4 && true}
           speed={1500}
           direction={`horizontal`}
           autoplay={{
@@ -45,27 +53,28 @@ export function TopAnimeList() {
           modules={[EffectCoverflow, Pagination, Autoplay]}
           className="mySwiper"
         >
-          {topAnime?.slice(0, 5).map((anime) => {
-            return (
-              <SwiperSlide className="relative" key={anime.mal_id}>
-                <div
-                  className="card-swiper-container"
-                  onClick={() => selectAnime(anime)}
-                >
-                  <img
-                    src={anime.images.jpg.large_image_url}
-                    alt={anime.title}
-                  />
-                  <p className="absolute top-0 left-0 p-4 text-3xl font-extrabold bg-opacity-50 top-anime-list-title w-max rounded-br-xl rounded-tl-xl bg-tailwindColorDark text-accent">
-                    {shortTitle(anime)}
-                  </p>
-                  <p className="absolute bottom-0 right-0 p-4 text-2xl font-black rounded-br-2xl top-anime-list-desc rounded-tl-xl bg-accent text-shades">
-                    {anime.score}
-                  </p>
-                </div>
-              </SwiperSlide>
-            );
-          })}
+          {topAnime.length > 5 &&
+            topAnime.slice(0, 5).map((anime) => {
+              return (
+                <SwiperSlide className="relative" key={anime.mal_id}>
+                  <div
+                    className="card-swiper-container"
+                    onClick={() => selectAnime(anime)}
+                  >
+                    <img
+                      src={anime.images.jpg.large_image_url}
+                      alt={anime.title}
+                    />
+                    <p className="absolute top-0 left-0 p-4 text-3xl font-extrabold bg-opacity-50 top-anime-list-title w-max rounded-br-xl rounded-tl-xl bg-tailwindColorDark text-accent">
+                      {shortTitle(anime)}
+                    </p>
+                    <p className="absolute bottom-0 right-0 p-4 text-2xl font-black rounded-br-2xl top-anime-list-desc rounded-tl-xl bg-accent text-shades">
+                      {anime.score}
+                    </p>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
         </Swiper>
       )}
     </div>

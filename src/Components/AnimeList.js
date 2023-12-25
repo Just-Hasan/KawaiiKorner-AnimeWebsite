@@ -1,4 +1,4 @@
-import LoadingAnimation from "./LoadingAnimation.js";
+import ThreeDotPop from "./LoadingAnimation/ThreeDotPop.js";
 import { ErrorMessage } from "./ErrorMessage.js";
 import { Anime } from "./Anime.js";
 import { useAnimeData } from "../App.js";
@@ -15,9 +15,9 @@ export function AnimeList() {
       {!isLoading && errorMessage && <ErrorMessage message={errorMessage} />}
       {isLoading && (
         <div className="flex items-center justify-center h-full loading-animation-wrapper col-span-full">
-          <LoadingAnimation>
+          <ThreeDotPop>
             <p className="text-2xl font-black text-accent">Loading Anime...</p>
-          </LoadingAnimation>
+          </ThreeDotPop>
         </div>
       )}
     </ul>

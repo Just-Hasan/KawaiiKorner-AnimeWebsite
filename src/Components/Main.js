@@ -26,17 +26,6 @@ export default function Main() {
       <div className="anime-container">
         <div className="anime-container-title-wrapper">
           <div className="anime-container-title">
-            {selectedAnime && <h1>{selectedAnime.title}</h1>}
-            {!selectedAnime &&
-              searchedAnime &&
-              searchedAnime.length !== 0 &&
-              searchValue === "" && <h1>Airing Anime</h1>}
-            {!selectedAnime &&
-              searchedAnime &&
-              searchedAnime.length === 0 &&
-              searchValue !== "" && (
-                <h1>{`Sorry, we cannot find any results for ${searchValue}`}</h1>
-              )}
             {!selectedAnime &&
               searchedAnime &&
               searchedAnime.length > 0 &&
@@ -45,7 +34,8 @@ export default function Main() {
               )}
           </div>
         </div>
-        {selectedAnime ? <SelectedAnime /> : <AnimeList />}
+        {/* {selectedAnime ? <SelectedAnime /> : <AnimeList />} */}
+        <AnimeList />
       </div>
     </div>
   );
