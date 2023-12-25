@@ -23,6 +23,7 @@ export default function Main() {
           <UpcomingAnimeList />
         </div>
       </div>
+      
       <div className="anime-container">
         <div className="anime-container-title-wrapper">
           <div className="anime-container-title">
