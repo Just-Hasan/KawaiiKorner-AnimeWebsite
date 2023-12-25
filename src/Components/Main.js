@@ -2,11 +2,11 @@ import { UpcomingAnimeList } from "./UpcomingAnimeList.js";
 import { TopAnimeList } from "./TopAnimeList.js";
 import { AnimeList } from "./AnimeList.js";
 import { useAnimeData } from "../App.js";
-import { SelectedAnime } from "./SelectedAnime.js";
+// import { SelectedAnime } from "./SelectedAnime.js";
 import "../Styles/Main.css";
 export default function Main() {
   const { searchedAnime, searchValue, selectedAnime } = useAnimeData();
-  console.log(selectedAnime);
+
   return (
     <div className="pb-5 main-container">
       <div className="sticky top-and-upcoming-anime-container top-4">
@@ -26,8 +26,15 @@ export default function Main() {
       <div className="anime-container">
         <div className="anime-container-title-wrapper">
           <div className="anime-container-title">
-            {!selectedAnime &&
-              searchedAnime &&
+            {searchedAnime &&
+              searchedAnime.length !== 0 &&
+              searchValue === "" && <h1>Airing Anime</h1>}
+            {searchedAnime &&
+              searchedAnime.length === 0 &&
+              searchValue !== "" && (
+                <h1>{`Sorry, we cannot find any results for ${searchValue}`}</h1>
+              )}
+            {searchedAnime &&
               searchedAnime.length > 0 &&
               searchValue !== "" && (
                 <h1>{`Found ${searchedAnime?.length} result for ${searchValue}`}</h1>

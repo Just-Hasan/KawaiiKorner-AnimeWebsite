@@ -7,7 +7,7 @@ export function UpcomingAnimeList() {
   const [upcomingAnime, setUpcomingAnime] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { shortTitle, selectAnime } = useAnimeData();
+  const { shortTitle } = useAnimeData();
 
   const getAPIData = async function () {
     try {
@@ -53,14 +53,11 @@ export function UpcomingAnimeList() {
           modules={[EffectCoverflow, Pagination, Autoplay]}
           className="mySwiper"
         >
-          {upcomingAnime.length > 5 &&
+          {upcomingAnime?.length > 5 &&
             upcomingAnime.slice(0, 10).map((anime) => {
               return (
                 <SwiperSlide className="relative" key={anime.mal_id}>
-                  <div
-                    className="card-swiper-container"
-                    onClick={() => selectAnime(anime)}
-                  >
+                  <div className="card-swiper-container">
                     <img
                       src={anime.images.jpg.large_image_url}
                       alt={anime.title}

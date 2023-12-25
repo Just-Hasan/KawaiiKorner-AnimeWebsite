@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAnimeData } from "../App";
 
 export function Anime({ anime }) {
-  const { shortTitle, selectAnime } = useAnimeData();
+  const { shortTitle } = useAnimeData();
   const animeTitle = shortTitle(anime);
   return (
     <li className="cursor-pointer anime">

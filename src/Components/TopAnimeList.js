@@ -6,7 +6,7 @@ import { useAnimeData } from "../App";
 export function TopAnimeList() {
   const [topAnime, setTopAnime] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { shortTitle, selectAnime } = useAnimeData();
+  const { shortTitle } = useAnimeData();
 
   useEffect(() => {
     const getTopAnimeData = async function () {
@@ -57,10 +57,7 @@ export function TopAnimeList() {
             topAnime.slice(0, 5).map((anime) => {
               return (
                 <SwiperSlide className="relative" key={anime.mal_id}>
-                  <div
-                    className="card-swiper-container"
-                    onClick={() => selectAnime(anime)}
-                  >
+                  <div className="card-swiper-container">
                     <img
                       src={anime.images.jpg.large_image_url}
                       alt={anime.title}
