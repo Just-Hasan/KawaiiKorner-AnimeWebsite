@@ -5,7 +5,7 @@ import { useAnimeData } from "../App.js";
 // import { SelectedAnime } from "./SelectedAnime.js";
 import "../Styles/Main.css";
 export default function Main() {
-  const { searchedAnime, searchValue, selectedAnime } = useAnimeData();
+  const { searchedAnime, searchValue } = useAnimeData();
 
   return (
     <div className="pb-5 main-container">
